@@ -1,0 +1,28 @@
+/* Starter styles. Section C owns the site's look. */
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  color: #1d2130;
+}
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #ddd;
+}
+
+main {
+  padding: 1rem 2rem;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 0.4rem 0.8rem;
+  text-align: left;
+}

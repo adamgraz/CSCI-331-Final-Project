@@ -1,0 +1,20 @@
+{
+  "name": "csci-331-final-project",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "db:setup": "node scripts/db-setup.mjs",
+    "db:reset": "node scripts/db-setup.mjs --reset"
+  },
+  "dependencies": {
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}
