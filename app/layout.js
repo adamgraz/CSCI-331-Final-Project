@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import Link from "next/link";
 import "./globals.css";
 
@@ -8,8 +7,8 @@ export const metadata = {
 };
 
 // Shared layout and navigation (Section C).
-// Pages read the database on every request, so they render inside Suspense, which
-// shows the fallback while their data loads.
+// Pages read the database on every request. app/loading.js shows while a page's
+// data loads, both on the first visit and when moving between pages.
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -20,9 +19,7 @@ export default function RootLayout({ children }) {
           <Link href="/projects">Projects</Link>
           <Link href="/skills">Skills</Link>
         </nav>
-        <main>
-          <Suspense fallback={<p>Loading...</p>}>{children}</Suspense>
-        </main>
+        <main>{children}</main>
       </body>
     </html>
   );
