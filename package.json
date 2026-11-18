@@ -2,12 +2,14 @@
   "name": "csci-331-final-project",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "db:setup": "node scripts/db-setup.mjs",
-    "db:reset": "node scripts/db-setup.mjs --reset"
+    "db:reset": "node scripts/db-setup.mjs --reset",
+    "check:skills": "node scripts/check-skills.mjs"
   },
   "dependencies": {
     "next": "16.4.6",

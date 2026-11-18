@@ -1,15 +1,15 @@
 -- Sample data so every page has something to show during development.
 -- All companies, roles and projects here are made up.
 
-INSERT INTO skills (id, name, have, plan) VALUES
-  (1, 'JavaScript', 1, ''),
-  (2, 'React', 1, ''),
-  (3, 'SQL', 1, ''),
-  (4, 'Python', 1, ''),
-  (5, 'Java', 0, 'Work through a Spring Boot tutorial'),
-  (6, 'Docker', 0, ''),
-  (7, 'AWS', 0, ''),
-  (8, 'Git', 1, '');
+INSERT INTO skills (id, name, aliases, have, plan) VALUES
+  (1, 'JavaScript', 'js, ecmascript', 1, ''),
+  (2, 'React', 'react.js, reactjs', 1, ''),
+  (3, 'SQL', 'mysql, postgresql, sqlite', 1, ''),
+  (4, 'Python', '', 1, ''),
+  (5, 'Java', '', 0, 'Work through a Spring Boot tutorial'),
+  (6, 'Docker', '', 0, ''),
+  (7, 'AWS', 'amazon web services', 0, ''),
+  (8, 'Git', 'github', 1, '');
 
 INSERT INTO applications (id, company, role, posting_url, posting_text, stage, notes, created_at) VALUES
   (1, 'Big Sky Software', 'Software Engineering Intern', 'https://example.com/jobs/1',

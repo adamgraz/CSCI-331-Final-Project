@@ -25,6 +25,7 @@ Then open http://localhost:3000.
 | `npm run start` | Runs the built version, which is what the server uses |
 | `npm run db:setup` | Creates `data/app.db` with the sample data, only if it doesn't exist yet |
 | `npm run db:reset` | Deletes `data/app.db` and rebuilds it from scratch. All local data is lost. Stop the app first. |
+| `npm run check:skills` | Tests the skill matching in `lib/skills.js` |
 
 ## Who owns what
 
@@ -45,7 +46,7 @@ Put new components in `app/components/`.
 
 All database access goes through `lib/data.js`. Pages never import `lib/db.js` or write SQL themselves, so the database can be changed later without touching any page.
 
-When you need data that no function provides yet, add a function to `lib/data.js`. Make it `async`, start it with `await connection()` like the others, and return plain objects. If you change a function someone else's page uses, tell them first.
+When you need data that no function provides yet, add a function to `lib/data.js`. Make it `async` and return plain objects. Functions that read data for a page start with `await connection()` like the others. Functions that save data are called from Server Actions and skip it. If you change a function someone else's page uses, tell them first.
 
 The tables are defined in `db/schema.sql`.
 
@@ -54,9 +55,11 @@ The tables are defined in `db/schema.sql`.
 | `applications` | `company`, `role`, `posting_url`, `posting_text`, `stage`, `notes`, `created_at` |
 | `stage_changes` | One row per stage change: `application_id`, `stage`, `changed_at` |
 | `projects` | `name`, `description`, `repo_url`, `source` (`manual` or `github`), `updated_at` |
-| `skills` | `name`, `have` (true or false in JavaScript), `plan` |
+| `skills` | `name`, `aliases` (other names, like `js, ecmascript`), `have` (true or false in JavaScript), `plan` |
 | `application_skills` | Which skills each job asks for |
 | `project_skills` | Which skills each project shows |
+
+When a job is saved or its posting text changes, call `matchApplicationSkills(id, postingText)` from `lib/data.js`. It finds the skills in the posting and links them to the job.
 
 Stages are `Saved`, `Applied`, `Interview`, `Offer` and `Rejected`, also exported as `STAGES` from `lib/data.js`. Dates are stored as text, like `2026-11-18 14:30:00`.
 

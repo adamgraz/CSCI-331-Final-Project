@@ -31,9 +31,11 @@ CREATE TABLE projects (
 );
 
 -- have is 1 when the user has the skill, 0 when it's missing.
+-- aliases is a comma-separated list of other names for the skill, like 'js, ecmascript'.
 CREATE TABLE skills (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT NOT NULL UNIQUE,
+  aliases TEXT NOT NULL DEFAULT '',
   have INTEGER NOT NULL DEFAULT 0 CHECK (have IN (0, 1)),
   plan TEXT NOT NULL DEFAULT ''
 );
