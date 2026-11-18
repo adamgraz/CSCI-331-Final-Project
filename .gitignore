@@ -42,3 +42,6 @@ next-env.d.ts
 
 # local SQLite database (built from db/schema.sql and db/seed.sql)
 /data/
+
+# JetBrains IDE settings
+/.idea/
