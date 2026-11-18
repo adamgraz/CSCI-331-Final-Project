@@ -1,14 +1,12 @@
 import { notFound } from "next/navigation";
 import { getApplication } from "@/lib/data";
+import SkillsGap from "@/app/components/SkillsGap";
 
 // Job detail page (Section B). The skills gap section belongs to Section A.
 export default async function ApplicationDetail({ params }) {
   const { id } = await params;
   const application = await getApplication(Number(id));
   if (!application) notFound();
-
-  const have = application.skills.filter((s) => s.have);
-  const missing = application.skills.filter((s) => !s.have);
 
   return (
     <>
@@ -27,12 +25,7 @@ export default async function ApplicationDetail({ params }) {
         ))}
       </ul>
 
-      <h2>Skills gap</h2>
-      <p>
-        You have {have.length} of {application.skills.length} skills for this job.
-      </p>
-      <p>Have: {have.map((s) => s.name).join(", ") || "none"}</p>
-      <p>Missing: {missing.map((s) => s.name).join(", ") || "none"}</p>
+      <SkillsGap application={application} />
     </>
   );
 }
