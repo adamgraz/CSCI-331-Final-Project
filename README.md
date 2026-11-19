@@ -37,10 +37,11 @@ Then open http://localhost:3000.
 | `app/applications/[id]/page.js` | Job detail (`/applications/1`). The skills gap section is A's. | B |
 | `app/projects/page.js` | Projects (`/projects`). The GitHub import is A's. | C |
 | `app/skills/page.js` | Skills (`/skills`) | A |
+| `app/skills/[id]/page.js` | One skill (`/skills/1`), with its plan, projects and jobs | A |
 | `lib/data.js` | Every data function, shared by all pages | Everyone |
 | `lib/db.js`, `db/`, `scripts/` | Database connection, tables, sample data | A |
 
-Put new components in `app/components/`.
+Put new components in `app/components/`. Every page folder also needs a `loading.js` containing `export { default } from "@/app/loading";`, or Next.js warns that navigating to it isn't instant.
 
 ## Data
 
