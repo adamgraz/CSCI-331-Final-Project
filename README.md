@@ -56,7 +56,7 @@ The tables are defined in `db/schema.sql`.
 | `applications` | `company`, `role`, `posting_url`, `posting_text`, `stage`, `notes`, `created_at` |
 | `stage_changes` | One row per stage change: `application_id`, `stage`, `changed_at` |
 | `projects` | `name`, `description`, `repo_url`, `source` (`manual` or `github`), `updated_at` |
-| `skills` | `name`, `aliases` (other names, like `js, ecmascript`), `have` (true or false in JavaScript), `plan` |
+| `skills` | `name`, `aliases` (other names, like `js, ecmascript`), `have` (true or false in JavaScript), `have_set_by_user` (1 once the user sets `have` by hand, so imports don't change it), `plan` |
 | `application_skills` | Which skills each job asks for |
 | `project_skills` | Which skills each project shows |
 

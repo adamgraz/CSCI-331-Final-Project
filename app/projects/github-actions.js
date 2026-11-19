@@ -38,7 +38,7 @@ export async function githubImport(previous, formData) {
       refresh();
       message =
         `Imported ${chosen.length} repo${chosen.length === 1 ? "" : "s"}. ` +
-        (skills.length ? `Skills added: ${skills.join(", ")}.` : "No matching skills found.");
+        (skills.length ? `Skills found: ${skills.join(", ")}.` : "No matching skills found.");
     }
 
     const saved = new Set(await getProjectRepoUrls());
