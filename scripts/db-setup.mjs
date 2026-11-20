@@ -4,6 +4,7 @@
 import { DatabaseSync } from "node:sqlite";
 import fs from "node:fs";
 import path from "node:path";
+import { hashPassword } from "../lib/password.mjs";
 
 const file = process.env.DB_PATH ?? path.join("data", "app.db");
 const reset = process.argv.includes("--reset");
@@ -30,7 +31,15 @@ try {
 const db = new DatabaseSync(file);
 db.exec("PRAGMA foreign_keys = ON");
 db.exec(fs.readFileSync("db/schema.sql", "utf8"));
+
+// The seed can't hash a password in plain SQL, so the demo account is created here.
+const demoPassword = process.env.DEMO_PASSWORD ?? "demo-password";
+db.prepare("INSERT INTO users (username, password_hash) VALUES (?, ?)").run(
+  "demo",
+  hashPassword(demoPassword)
+);
+
 db.exec(fs.readFileSync("db/seed.sql", "utf8"));
 db.close();
 
-console.log(`Built ${file} with the sample data.`);
+console.log(`Built ${file} with the sample data. Demo login: demo / ${demoPassword}`);
