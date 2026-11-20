@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import "./globals.css";
+import UserMenu from "./components/UserMenu";
 
 export const metadata = {
   title: "Application and Project Tracker",
@@ -7,8 +9,8 @@ export const metadata = {
 };
 
 // Shared layout and navigation (Section C).
-// Pages read the database on every request. app/loading.js shows while a page's
-// data loads, both on the first visit and when moving between pages.
+// Pages read the database on every request, so they render inside Suspense, which
+// shows the fallback while their data loads.
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -18,8 +20,15 @@ export default function RootLayout({ children }) {
           <Link href="/applications">Applications</Link>
           <Link href="/projects">Projects</Link>
           <Link href="/skills">Skills</Link>
+          <span className="user-menu">
+            <Suspense fallback={null}>
+              <UserMenu />
+            </Suspense>
+          </span>
         </nav>
-        <main>{children}</main>
+        <main>
+          <Suspense fallback={<p>Loading...</p>}>{children}</Suspense>
+        </main>
       </body>
     </html>
   );
