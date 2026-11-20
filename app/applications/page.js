@@ -8,9 +8,6 @@ export default async function Applications() {
   return (
     <>
       <h1>Applications</h1>
-      <p>
-      <Link href="/applications/new">Add application</Link>
-      </p>
       <table>
         <thead>
           <tr>
